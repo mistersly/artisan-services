@@ -5,21 +5,23 @@ services:
       dockerfile: deploy/Dockerfile.dev
     ports:
       - "${APP_PORT:-8080}:8080"
-    volumes:
-      - .:/app
     environment:
       - MYSQL_HOST=mysql
       - MYSQL_PORT=3306
+      - MYSQL_DBNAME=${MYSQL_DBNAME}
       - MYSQL_DATABASE=${MYSQL_DBNAME}
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - REDIS_HOST=redis
       - REDIS_PORT=6379
+      - REDIS_ADDR=redis:6379
       - REDIS_PASSWORD=${REDIS_PASSWORD}
       - APP_ENV=development
       - JWT_ACCESS_SECRET=${JWT_ACCESS_SECRET}
       - JWT_REFRESH_SECRET=${JWT_REFRESH_SECRET}
       - SUPERADMIN_PASSWORD=${SUPERADMIN_PASSWORD}
+      - SMTP_HOST=mailpit
+      - SMTP_PORT=1025
     depends_on:
       - mysql
       - redis

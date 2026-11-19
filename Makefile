@@ -269,7 +269,7 @@ dev-up:
 		echo "$(ENV_LOCAL_FILE) missing, auto-initializing..."; \
 		$(MAKE) env-init >/dev/null; \
 	fi
-	@$(MAKE) env-sync >/dev/null; \
+	@$(MAKE) env-sync >/dev/null
 	@docker compose --env-file "$(ENV_LOCAL_FILE)" -f docker-compose.dev.yml up -d --build
 
 .PHONY: dev-down

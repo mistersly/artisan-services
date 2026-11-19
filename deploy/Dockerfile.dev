@@ -35,6 +35,9 @@ COPY --from=builder /app/main .
 # Copy migration files (if migration is run by the app on start, or by a separate tool)
 COPY --from=builder /app/db/migrations ./db/migrations
 
+# Copy casbin model file read at runtime relative to the working directory
+COPY --from=builder /app/internal/config/casbin_model.conf ./internal/config/casbin_model.conf
+
 # Set ownership to non-root user
 RUN chown -R appuser:appuser /app
 
@@ -49,7 +52,7 @@ EXPOSE 8080
 
 # Healthcheck
 HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
-  CMD wget --no-verbose --tries=1 --spider http://localhost:8080/health || exit 1
+  CMD wget --no-verbose --tries=1 --spider http://localhost:8080/api/v1/health || exit 1
 
 # Run the binary
 CMD ["./main"]

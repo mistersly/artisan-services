@@ -4146,7 +4146,7 @@ const docTemplate = `{
                         "BearerAuth": []
                     }
                 ],
-                "description": "Returns system-level performance metrics (latency, error rate, uptime).",
+                "description": "Returns high-level user activity insights derived from audit log state.",
                 "produces": [
                     "application/json"
                 ],
@@ -6321,16 +6321,7 @@ const docTemplate = `{
         "github_com_Roisfaozi_go-clean-boilerplate_internal_modules_stats_model.SystemInsights": {
             "type": "object",
             "properties": {
-                "avg_latency_ms": {
-                    "type": "number"
-                },
-                "error_rate": {
-                    "type": "number"
-                },
                 "most_active_role": {
-                    "type": "string"
-                },
-                "uptime": {
                     "type": "string"
                 }
             }
